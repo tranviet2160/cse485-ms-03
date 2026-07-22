@@ -8,7 +8,7 @@ require_once __DIR__ . '/src/Product.php';
 /** @var Category[] $categoryObjects */
 $categoryObjects = [
     new Category(1, 'Ban phim', 'Danh muc ban phim co / membrane'),
-    new Category(2, 'Chuot', 'Danh muc chuot may tinh'),
+    new Category(2, 'Chuot',    'Danh muc chuot may tinh'),
     new Category(3, 'Man hinh', 'Danh muc man hinh'),
 ];
 
