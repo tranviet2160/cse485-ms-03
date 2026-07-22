@@ -1,12 +1,23 @@
+```php
 <?php
-class Product {
+
+declare(strict_types=1);
+
+class Product
+{
     public string $sku;
     public string $name;
     public int $categoryId;
     public int $price;
     public int $qty;
 
-    public function __construct(string $sku, string $name, int $categoryId, int $price, int $qty) {
+    public function __construct(
+        string $sku,
+        string $name,
+        int $categoryId,
+        int $price,
+        int $qty
+    ) {
         $this->sku = $sku;
         $this->name = $name;
         $this->categoryId = $categoryId;
@@ -14,24 +25,46 @@ class Product {
         $this->qty = $qty;
     }
 
-    public function lineTotal(): int {
+    /**
+     * Tính thành tiền sản phẩm
+     * price * qty
+     */
+    public function lineTotal(): int
+    {
         return $this->price * $this->qty;
     }
 
-    public function stockLevel(): string {
-        if ($this->qty >= 5) return "Du";
-        if ($this->qty >= 2) return "Sap het";
-        return "Can nhap";
+    /**
+     * Kiểm tra mức tồn kho
+     * Theo CANONICAL-DATA
+     */
+    public function stockLevel(): string
+    {
+        if ($this->qty >= 5) {
+            return 'Du';
+        }
+
+        if ($this->qty >= 2) {
+            return 'Sap het';
+        }
+
+        return 'Can nhap';
     }
 
-    public function toArray(): array {
+    /**
+     * Chuyển object thành array để debug
+     */
+    public function toArray(): array
+    {
         return [
             'sku' => $this->sku,
             'name' => $this->name,
-            'categoryId' => $this->categoryId,
+            'category_id' => $this->categoryId,
             'price' => $this->price,
-            'qty' => $this->qty
+            'qty' => $this->qty,
+            'line_total' => $this->lineTotal(),
+            'stock' => $this->stockLevel()
         ];
     }
 }
-?>
+```
